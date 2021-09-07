@@ -17,12 +17,14 @@ multipliers = x + 1
 final circles = x + 2
 
 */
-import Pyramid from "./components/Pyramid";
+import Pyramid from "./components/Pyramid/Pyramid";
 import Menu from "./components/Menu/Menu";
 import { useState } from "react";
 import "./App.css";
+import Balance from "./components/Balance/Balance";
 
 function App() {
+  const [balance, setBalance] = useState(100)
   const [autoBet, setAutoBet] = useState(false);
   const [betAmount, setBetAmount] = useState(0);
   const [risk, setRisk] = useState(1);
@@ -60,9 +62,16 @@ function App() {
   const handleNumOfAutoBets = (e) => {
     setNumOfAutoBets(e.target.value);
   }
-  console.log(numOfAutoBets)
+
+  const handleBalance = (bal) => {
+    setBalance(bal);
+  }
+  
   return (
     <div>
+      <Balance
+        handleBalance={handleBalance}
+        balance={balance} />
       <Menu
         handleAutoBet={handleAutoBet}
         handleBetAmount={handleBetAmount}
