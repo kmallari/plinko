@@ -1,0 +1,102 @@
+.form-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.bet-mode > button {
+  width: 50%;
+}
+
+.auto-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.bet-button {
+  width: 100%;
+  background-color: rgb(16, 248, 47);
+  color: #0f212e;
+  padding: 1.2em;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.bet-button:hover {
+  background-color: rgb(31, 197, 53);
+  transition: all 0.2s ease-in-out;
+}
+
+.manual-button {
+  border-radius: 0.24em 0px 0px 0.24em;
+  font-size: 1em;
+  padding: 1em;
+}
+
+.auto-button {
+  border-radius: 0em 0.24em 0.24em 0em;
+  font-size: 1em;
+  padding: 1em;
+}
+
+.unselected-tab {
+  background-color: rgb(20, 42, 55);
+  color: rgb(77, 95, 111);
+  border: none;
+}
+
+.selected-tab:hover {
+  background-color: rgb(66, 90, 108);
+  transition: all 0.1s ease-in-out;
+}
+
+.selected-tab {
+  background-color: rgb(47, 69, 83);
+  color: rgb(105, 121, 139);
+  cursor: pointer;
+  border: none;
+  transition: all 0.1s ease-in-out;
+}
+
+.set-balance-btn {
+  background-color: rgb(49, 109, 236);
+  color: none;
+  font-size: 0.8em;
+  font-weight: 500;
+  padding: 0.8em;
+  cursor: pointer;
+  border-radius: 0.4em;
+}
+
+.balance-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  background-color: rgb(33, 55, 67);
+  padding: 2em;
+  padding-bottom: 0;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.6em;
+}
+
+.bet-modifier {
+  min-width: 3.4em;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6em;
+}
+
+#balance {
+  background:rgb(20, 42, 55);
+  font-weight: 700;
+  padding: 0.2em;
+  color: rgb(49, 109, 236);
+}

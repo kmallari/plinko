@@ -4,21 +4,30 @@ const Balance = ({ handleBalance, balance }) => {
   const inputRef = useRef();
 
   return (
-    <div>
-      <div>
-        <label htmlFor="bal">Set balance</label>
-        <input ref={inputRef} id="bal" name="bal" type="number" />
-        {/* {console.log(inputRef.current.value)} */}
-        <button
-          onClick={() => {
-            handleBalance(inputRef.current.value);
-          }}
-        >
-          Set Balance
-        </button>
+    <div className="balance-section">
+      <div className="set-balance">
+        <div className="input">
+          <label htmlFor="bal">Set balance</label>
+          <input
+            ref={inputRef}
+            id="bal"
+            name="bal"
+            type="number"
+            min="0"
+            defaultValue="100"
+          />
+          <button
+            onClick={() => {
+              handleBalance(inputRef.current.value);
+            }}
+            className="set-balance-btn"
+          >
+            Set Balance
+          </button>
+        </div>
       </div>
       <div>
-        <p>Current balance: {balance} </p>
+        <p>Current balance: <span id="balance">{balance}</span> </p>
       </div>
     </div>
   );

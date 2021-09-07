@@ -3,7 +3,7 @@ import React from 'react'
 const Manual = () => {
   return (
     <div>
-      <button>Bet</button>
+      <button className="bet-button">Bet</button>
     </div>
   )
 }

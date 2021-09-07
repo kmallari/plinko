@@ -18,6 +18,27 @@ const Pyramid = ({ numOfRows }) => {
   const rows = numOfRows; // make this variable
   let rowCount = 1;
 
+  // STYLES
+  const circleStyle = {
+    "borderRadius": "50%",
+    "backgroundColor": "white",
+    "minWidth": `${10/rows}em`,
+    "minHeight": `${10/rows}em`
+  }
+
+  const rowStyle = {
+    "display": "flex",
+    "gap": `${30/rows}em`,
+    "alignItems": "center",
+    "justifyContent": "center"
+  }
+
+  const pyramidStyle = {
+    "display": "flex",
+    "flexDirection": "column",
+    "gap": `${30/rows}em`
+  }
+
   const mainNode = new Node(0);
   const list = new LinkedList(mainNode);
 
@@ -50,15 +71,15 @@ const Pyramid = ({ numOfRows }) => {
   }
   tempOldNodeArr.shift();
   tempOldNodeArr.pop();
-  // console.log(nodeArr[nodeArr.length-1])
+
   return (
-    <div className="pyramid">
+    <div style={pyramidStyle}>
       {nodeArr.map((rowArr, i) => {
         if (i > 1) {
           return (
-            <div key={i} className="row">
+            <div key={i} style={rowStyle}>
               {rowArr.map((node, j) => {
-                return <div className="circle"></div>;
+                return <div style={circleStyle}></div>;
               })}
             </div>
           );
@@ -66,7 +87,7 @@ const Pyramid = ({ numOfRows }) => {
       })}
       <div className="multipliers-row">
         {tempOldNodeArr.map((node, i) => {
-          return <div className="multiplier">{node.data}</div>;
+          return <div className="multiplier">{node.data}×</div>;
         })}
       </div>
     </div>
