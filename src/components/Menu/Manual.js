@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Manual = () => {
+const Manual = ({ randomTraverse }) => {
+  // randomTraverse();
   return (
     <div>
-      <button className="bet-button">Bet</button>
+      <button onClick={randomTraverse} className="bet-button">Bet</button>
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import Auto from "./Auto";
 import Manual from "./Manual";
-import { useEffect } from "react";
 import "./menu.css";
 
 const Menu = ({
@@ -14,19 +13,9 @@ const Menu = ({
   doubleBet,
   autoBet,
   betAmount,
+  randomTraverse,
 }) => {
-  const unselectedTab = {
-    backgroundColor: "rgb(20, 42, 55)",
-    color: "rgb(77, 95, 111)",
-    border: "none",
-  };
-
-  const selectedTab = {
-    backgroundColor: "rgb(47, 69, 83)",
-    color: "rgb(105, 121, 139)",
-    cursor: "pointer",
-    border: "none",
-  };
+  //  randomTraverse();
 
   return (
     <div className="menu">
@@ -50,60 +39,63 @@ const Menu = ({
           Auto
         </button>
       </div>
-      {/* <form action="" className="form-menu"> */}
       <div className="input">
         <label htmlFor="bet-amount">Bet Amount</label>
-        <div>
+        <div className="balance-input">
           <input
             onChange={handleBetAmount}
             type="number"
             id="bet-amount"
             name="bet-amount"
-            defaultValue="10"
             min="0"
             value={betAmount}
           />
-          <button onClick={halfBet} className="bet-modifier">
+          <button onClick={halfBet} className="bet-modifier half">
             ½
           </button>
-          <button onClick={doubleBet} className="bet-modifier">
+          <button onClick={doubleBet} className="bet-modifier double">
             2×
           </button>
         </div>
       </div>
       {/* buttons to half and double bet amount */}
-      <div className="input">
-        <label htmlFor="risk">Risk</label>
-        <select onChange={handleRisk} name="risk" id="risk">
-          <option value="low">Low</option>
-          <option selected value="medium">
-            Medium
-          </option>
-          <option value="high">High</option>
-        </select>
-      </div>
-      <div className="input">
-        <label htmlFor="rows">Rows</label>
-        <select onChange={handleRows} name="rows" id="rows">
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option selected value="12">
-            12
-          </option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-        </select>
+      <div className="risk-rows">
+        <div className="input">
+          <label htmlFor="risk">Risk</label>
+          <select
+            onChange={handleRisk}
+            name="risk"
+            id="risk"
+            defaultValue="medium"
+          >
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div className="input">
+          <label htmlFor="rows">Rows</label>
+          <select onChange={handleRows} name="rows" id="rows" defaultValue="12">
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+          </select>
+        </div>
       </div>
       {!autoBet ? (
-        <Manual />
+        <Manual randomTraverse={randomTraverse} />
       ) : (
-        <Auto handleNumOfAutoBets={handleNumOfAutoBets} />
+        <Auto
+          randomTraverse={randomTraverse}
+          handleNumOfAutoBets={handleNumOfAutoBets}
+        />
       )}
-      {/* </form> */}
     </div>
   );
 };

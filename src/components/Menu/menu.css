@@ -11,6 +11,7 @@
 .auto-menu {
   display: flex;
   flex-direction: column;
+  gap: 1em;
 }
 
 .bet-button {
@@ -20,6 +21,8 @@
   padding: 1.2em;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  border: none;
+  /* margin-top: 1em; */
 }
 
 .bet-button:hover {
@@ -66,6 +69,7 @@
   padding: 0.8em;
   cursor: pointer;
   border-radius: 0.4em;
+  border: none;
 }
 
 .balance-section {
@@ -86,6 +90,15 @@
 
 .bet-modifier {
   min-width: 3.4em;
+  background-color: rgb(47, 69, 83);
+  box-shadow: none;
+  transition: all 0.1s ease-in-out;
+}
+
+.bet-modifier:hover {
+  background-color: rgb(66, 90, 108);
+  border: 2px solid rgb(66, 90, 108);
+  transition: all 0.1s ease-in-out;
 }
 
 .menu {
@@ -95,8 +108,58 @@
 }
 
 #balance {
-  background:rgb(20, 42, 55);
+  background: rgb(20, 42, 55);
   font-weight: 700;
   padding: 0.2em;
   color: rgb(49, 109, 236);
+  border-radius: 0.24em;
+}
+
+.risk-rows {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+#bet-amount {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: none;
+}
+
+.half {
+  border-radius: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.half::after {
+  content: "";
+  background: rgb(26, 44, 56);
+  position: absolute;
+  bottom: 25%;
+  right: -2px;
+  height: 50%;
+  width: 1px;
+}
+
+.double {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.double::after {
+  content: "";
+  background: rgb(26, 44, 56);
+  position: absolute;
+  bottom: 25%;
+  left: -2px;
+  height: 50%;
+  width: 1px;
+}
+
+.balance-input {
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
 }
