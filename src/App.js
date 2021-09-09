@@ -56,7 +56,7 @@ const App = () => {
   let tempNewNodeArr = [];
   let nodeArr = [];
 
-  let riskMultipliers = [13, 3, 1.3, 0.7, 0.4, 0.7, 1.3, 3, 13];
+  let riskMultipliers = [13, 3, 1.3, 0.7, 0.4, 0.7, 1.3, 3, 13, 4, 4, 455, 4, 5, 5, 5, 6];
 
   let ctr = 1;
 

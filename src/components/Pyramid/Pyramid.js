@@ -25,8 +25,8 @@ const Pyramid = ({ rows, nodeArr, tempOldNodeArr }) => {
   const circleStyle = {
     borderRadius: "50%",
     backgroundColor: "white",
-    minWidth: `${5 / rows}em`,
-    minHeight: `${5 / rows}em`,
+    minWidth: `${(5 / rows).toFixed(2)}em`,
+    minHeight: `${(5 / rows).toFixed(2)}em`,
   };
 
   const rowStyle = {
@@ -42,19 +42,37 @@ const Pyramid = ({ rows, nodeArr, tempOldNodeArr }) => {
     gap: `${16 / rows}em`,
   };
 
+  /*
+  width
+    8  - 29
+    9  - 29
+    10 - 28
+    11 - 28
+    12 - 27
+    13 - 27
+    14 - 26
+    15 - 25
+    16 - 25
+  */
+
   const multiplierStyle = {
-    "display": "flex",
-    "alignItems": "center",
-    "justifyContent": "center",
-    "padding": `${4.6/rows}em ${9.6/rows}em`, // change
-    "backgroundColor": "rgb(219, 59, 31)", // change?
-    "width": `${9.6/rows}em`, // change
-    "margin": "0 0.2em",
-    "borderRadius": "0.22em",
-    "color": "white",
-    "fontSize": "0.624em",
-    "borderBottom": "0.3em solid rgba(0, 0, 0, 0.233)",
-  }
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: `${4.6 / rows}em ${0 / rows}em`, // change
+    backgroundColor: "rgb(219, 59, 31)", // change?
+    width: `${
+      rows === 8 || rows === 9 ? 29 / rows :
+      rows === 10 || rows === 11 /rows ? 28 /rows :
+      rows === 12 || rows === 13 /rows ? 27 /rows :
+      rows === 14 ? 26 /rows : 25 /rows
+    }em`, // change
+    margin: "0 0.2em",
+    borderRadius: "0.22em",
+    color: "white",
+    fontSize: "0.624em",
+    borderBottom: "0.3em solid rgba(0, 0, 0, 0.233)",
+  };
 
   return (
     <div style={pyramidStyle} className="pyramid">
@@ -73,7 +91,8 @@ const Pyramid = ({ rows, nodeArr, tempOldNodeArr }) => {
         {tempOldNodeArr.map((node, i) => {
           return (
             <div key={i} style={multiplierStyle}>
-              {node.data}×
+              {node.data}
+              {node.data.toString().length < 3 ? "×" : ""}
             </div>
           );
         })}
