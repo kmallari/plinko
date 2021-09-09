@@ -109,6 +109,8 @@
   background-color: rgb(33, 55, 67);
   padding: 2em;
   min-width: 24.2em;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
 }
 
 .balance-section {

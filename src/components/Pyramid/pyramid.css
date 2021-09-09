@@ -1,5 +1,8 @@
 .pyramid {
-  padding: 2.8em;
+  padding: 1em;
   background-color: rgb(15, 33, 46);
-  width: 362px;
+  width: 420px;
+  height: 360px;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
 }
