@@ -35,27 +35,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.multiplier {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6em 1.4em;
-  background-color: red;
-  width: 1.2em;
-  margin: 0 0.6em;
-  border-radius: 0.22em;
-}
-
-.menu {
-  background-color: rgb(33, 55, 67);
-  padding: 2em;
+  
 }
 
 input, select, button {
-  padding: 0.4em;
-  font-size: 1.2em;
+  padding: 0.2em;
+  font-size: 1em;
   font-weight: 600;
   border-radius: 0.24em;
   background-color: rgb(15, 33, 46);

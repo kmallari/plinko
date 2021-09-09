@@ -15,8 +15,6 @@ const Menu = ({
   betAmount,
   randomTraverse,
 }) => {
-  //  randomTraverse();
-
   return (
     <div className="menu">
       <div className="bet-mode">
@@ -41,7 +39,7 @@ const Menu = ({
       </div>
       <div className="input">
         <label htmlFor="bet-amount">Bet Amount</label>
-        <div className="balance-input">
+        <div className="bet-input">
           <input
             onChange={handleBetAmount}
             type="number"
