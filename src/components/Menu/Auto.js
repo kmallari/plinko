@@ -1,6 +1,6 @@
 import React from "react";
 
-const Auto = ({ handleNumOfAutoBets, randomTraverse }) => {
+const Auto = ({ handleNumOfAutoBets, automatedTraverse }) => {
   return (
     <div className="auto-menu">
       <div className="input">
@@ -12,7 +12,7 @@ const Auto = ({ handleNumOfAutoBets, randomTraverse }) => {
           name="num-of-bets"
         />
       </div>
-      <button onClick={randomTraverse} className="bet-button">Start Autobet</button>
+      <button onClick={automatedTraverse} className="bet-button">Start Autobet</button>
     </div>
   );
 };

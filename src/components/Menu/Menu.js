@@ -14,6 +14,7 @@ const Menu = ({
   autoBet,
   betAmount,
   randomTraverse,
+  automatedTraverse
 }) => {
   return (
     <div className="menu">
@@ -90,7 +91,7 @@ const Menu = ({
         <Manual randomTraverse={randomTraverse} />
       ) : (
         <Auto
-          randomTraverse={randomTraverse}
+          automatedTraverse={automatedTraverse}
           handleNumOfAutoBets={handleNumOfAutoBets}
         />
       )}

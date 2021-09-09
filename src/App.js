@@ -154,8 +154,10 @@ const App = () => {
 
   // -------
 
+  // console.log(tempOldNodeArr)
+
   const handleBetAmount = (e) => {
-    setBetAmount(e.target.value);
+    setBetAmount(parseFloat(e.target.value));
   };
 
   const handleAutoBet = (e) => {
@@ -178,15 +180,37 @@ const App = () => {
     }
   };
 
-  const randomTraverse = (e) => {
+  // betting function
+  const randomTraverse = () => {
+    let multiplier = 0;
+    if (betAmount > balance) {
+      // add popup here
+      console.log("cannot be");
+      return;
+    }
+    // console.log("CAN BE");
     const headDup = list.head;
     while (list.head) {
-      console.log(list.head.data);
+      // console.log(list.head.data);
+      multiplier = list.head.data;
       Math.random() > 0.5
         ? (list.head = list.head.nextLeft)
         : (list.head = list.head.nextRight);
     }
+
+    console.log(multiplier);
+    console.log(balance);
+    setBalance(balance - betAmount + betAmount * multiplier);
+
     list.head = headDup;
+  };
+
+  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  const automatedTraverse = () => {
+    for (let i = 0; i < numOfAutoBets; i++) {
+      randomTraverse();
+    }
   };
 
   const handleRows = (e) => {
@@ -198,19 +222,20 @@ const App = () => {
   };
 
   const handleBalance = (bal) => {
-    setBalance(bal);
+    if (bal === "") {
+      setBalance(0);
+      return;
+    }
+    setBalance(parseFloat(bal));
   };
 
   const halfBet = () => {
     setBetAmount(betAmount / 2);
-    console.log(betAmount);
   };
 
   const doubleBet = () => {
     setBetAmount(betAmount * 2);
   };
-
-  console.log(risk);
 
   return (
     <div className="app">
@@ -227,6 +252,7 @@ const App = () => {
           doubleBet={doubleBet}
           betAmount={betAmount}
           randomTraverse={randomTraverse}
+          automatedTraverse={automatedTraverse}
         />
       </div>
       <Pyramid rows={rows} nodeArr={nodeArr} tempOldNodeArr={tempOldNodeArr} />
