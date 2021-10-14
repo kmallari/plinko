@@ -1,5 +1,6 @@
 import Pyramid from "./components/Pyramid/Pyramid";
 import Menu from "./components/Menu/Menu";
+import Ball from "./components/Ball/Ball";
 import { useState, useEffect } from "react";
 import "./App.css";
 import Balance from "./components/Balance/Balance";
@@ -23,8 +24,10 @@ const App = () => {
   const [autoBet, setAutoBet] = useState(false);
   const [betAmount, setBetAmount] = useState(10);
   const [risk, setRisk] = useState(1);
-  const [rows, setRows] = useState(12);
+  const [rows, setRows] = useState(8);
+  const [rowsWord, setRowsWord] = useState("twelve");
   const [numOfAutoBets, setNumOfAutoBets] = useState(0);
+  const [ballXTravel, setBallXTravel] = useState(0);
   // Pyramid Code
 
   let rowCount = 1;
@@ -97,30 +100,39 @@ const App = () => {
   useEffect(() => {
     switch (rows) {
       case 8:
+        setRowsWord("eight");
         setMultipliers(eightRowMultipliers);
         break;
       case 9:
+        setRowsWord("nine");
         setMultipliers(nineRowMultipliers);
         break;
       case 10:
+        setRowsWord("ten");
         setMultipliers(tenRowMultipliers);
         break;
       case 11:
+        setRowsWord("eleven");
         setMultipliers(elevenRowMultipliers);
         break;
       case 12:
+        setRowsWord("twelve");
         setMultipliers(twelveRowMultipliers);
         break;
       case 13:
+        setRowsWord("thirteen");
         setMultipliers(thirteenRowMultipliers);
         break;
       case 14:
+        setRowsWord("fourteen");
         setMultipliers(fourteenRowMultipliers);
         break;
       case 15:
+        setRowsWord("fifteen");
         setMultipliers(fifteenRowMultipliers);
         break;
       case 16:
+        setRowsWord("sixteen");
         setMultipliers(sixteenRowMultipliers);
         break;
       default:
@@ -205,8 +217,6 @@ const App = () => {
     list.head = headDup;
   };
 
-  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
-
   const automatedTraverse = () => {
     for (let i = 0; i < numOfAutoBets; i++) {
       randomTraverse();
@@ -237,9 +247,20 @@ const App = () => {
     setBetAmount(betAmount * 2);
   };
 
+  const ballStyle = {
+    background: "red",
+    borderRadius: "50%",
+    width: `${10 / rows}em`,
+    height: `${10 / rows}em`,
+    position: "absolute",
+    top: "60px",
+    left: "49%",
+  };
+
   return (
     <div className="app">
       <div>
+        <Ball rows={rows} />
         <Balance handleBalance={handleBalance} balance={balance} />
         <Menu
           handleAutoBet={handleAutoBet}
@@ -254,6 +275,9 @@ const App = () => {
           randomTraverse={randomTraverse}
           automatedTraverse={automatedTraverse}
         />
+      </div>
+      <div className={`ball ${rowsWord}`}>
+        <Ball />
       </div>
       <Pyramid rows={rows} nodeArr={nodeArr} tempOldNodeArr={tempOldNodeArr} />
     </div>

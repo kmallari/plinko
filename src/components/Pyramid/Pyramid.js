@@ -27,7 +27,7 @@ const Pyramid = ({ rows, nodeArr, tempOldNodeArr }) => {
     alignItems: "center",
     justifyContent: "center",
     padding: `${4.6 / rows}em ${0 / rows}em`, // change
-    backgroundColor: "rgb(219, 59, 31)", // change?
+    // backgroundColor: "rgb(219, 59, 31)", // change?
     width: `${
       rows === 8 || rows === 9
         ? 29 / rows
@@ -44,6 +44,9 @@ const Pyramid = ({ rows, nodeArr, tempOldNodeArr }) => {
     color: "white",
     fontSize: "0.624em",
     borderBottom: "0.3em solid rgba(0, 0, 0, 0.233)",
+    backgroundImage: "linear-gradient(to right, red, red, rgb(204, 155, 21),red, red)",
+    backgroundAttachment: "fixed",
+    fontWeight: 600,
   };
 
   return (
