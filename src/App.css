@@ -78,56 +78,5 @@ label {
   font-weight: 500;
 }
 
-.ball div {
-  background: red;
-  border-radius: 50%;
-  position: absolute;
-  top: 0.8em;
-  right: 49.1%;
-}
 
-.eight div {
-  height: 1.25em;
-  width: 1.25em;
-}
- 
-.nine div {
-  height: 1.11em;
-  width: 1.11em;
-}
- 
-.ten div {
-  height: 1em;
-  width: 1em;
-}
- 
-.eleven div {
-  height: 0.9em;
-  width: 0.9em;
-}
- 
-.twelve div {
-  height: 0.85em;
-  width: 0.85em;
-}
- 
-.thirteen div {
-  height: 0.77em;
-  width: 0.77em;
-}
- 
-.fourteen div {
-  height: 0.72em;
-  width: 0.72em;
-}
- 
-.fifteen div {
-  height: 0.69em;
-  width: 0.69em;
-}
- 
-.sixteen div {
-  height: 0.6em;
-  width: 0.6em;
-}
  
