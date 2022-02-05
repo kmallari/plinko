@@ -3,9 +3,8 @@ import "./pyramid.css";
 import Ball from "../Ball/Ball";
 import { useState, useEffect } from "react";
 
-const Pyramid = ({ rows, nodeArr, tempOldNodeArr }) => {
+const Pyramid = ({ rows, nodeArr, tempOldNodeArr, path, betStarted }) => {
   const [rowsWord, setRowsWord] = useState("eight");
-
   useEffect(() => {
     switch (rows) {
       case 8:
@@ -89,12 +88,37 @@ const Pyramid = ({ rows, nodeArr, tempOldNodeArr }) => {
     fontWeight: 600,
   };
 
-  console.log(rowsWord)
+  let ballTopStyle;
+
+  if (rows === 8) {
+    ballTopStyle = { top: `-4.6em` };
+  } else if (rows === 9) {
+    ballTopStyle = { top: `-4.8em` };
+  } else if (rows === 10) {
+    ballTopStyle = { top: `-4.2em` };
+  } else if (rows === 11) {
+    ballTopStyle = { top: `-3.7em` };
+  } else if (rows === 12) {
+    ballTopStyle = { top: `-3.4em` };
+  } else if (rows === 13) {
+    ballTopStyle = { top: `-3.1em` };
+  } else if (rows === 14) {
+    ballTopStyle = { top: `-2.8em` };
+  } else if (rows === 15) {
+    ballTopStyle = { top: `-2.5em` };
+  } else if (rows === 16) {
+    ballTopStyle = { top: `-2.2em` };
+  }
+
+  // console.log(rowsWord);
 
   return (
-    <div style={pyramidStyle} className="pyramid hidden-overflow">
-      <div className={`ball-div falling-ball ${rowsWord}`}>
-        <Ball />
+    <div style={pyramidStyle} className='pyramid hidden-overflow'>
+      <div
+        style={ballTopStyle}
+        className={`ball-div falling-ball ballTopStyle ${rowsWord}`}
+      >
+        <Ball path={path} rows={rows} betStarted={betStarted} />
       </div>
       {nodeArr.map((rowArr, i) => {
         if (i > 1) {
@@ -107,7 +131,7 @@ const Pyramid = ({ rows, nodeArr, tempOldNodeArr }) => {
           );
         }
       })}
-      <div className="multipliers-row">
+      <div className='multipliers-row'>
         {tempOldNodeArr.map((node, i) => {
           return (
             <div key={i} style={multiplierStyle}>
@@ -117,7 +141,6 @@ const Pyramid = ({ rows, nodeArr, tempOldNodeArr }) => {
           );
         })}
       </div>
-      
     </div>
   );
 };

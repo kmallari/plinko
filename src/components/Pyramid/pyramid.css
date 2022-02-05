@@ -5,24 +5,29 @@
   height: 360px;
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
+  display: flex;
+  /* flex-direction: column-reverse; */
+  align-items: center;
 }
 
 .multipliers-row {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.1em;
+  /* gap: 0.1em; */
 }
 
 .ball-div {
   position: absolute;
+  /* top: -2em; */
 }
 
 .falling-ball div{
   background: red;
   border-radius: 50%;
   position: absolute;
-  top: -1em;
+  /* top: -2em; */
+  left: 0;
 }
 
 .eight div {

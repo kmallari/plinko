@@ -1,6 +1,6 @@
 import Pyramid from "./components/Pyramid/Pyramid";
 import Menu from "./components/Menu/Menu";
-
+import Ball from "./components/Ball/Ball";
 import { useState, useEffect } from "react";
 import "./App.css";
 import Balance from "./components/Balance/Balance";
@@ -25,38 +25,35 @@ const App = () => {
   const [betAmount, setBetAmount] = useState(10);
   const [risk, setRisk] = useState(1);
   const [rows, setRows] = useState(8);
+  const [betPath, setBetPath] = useState([]);
+  const [betStarted, setBetStarted] = useState(false);
 
   const [numOfAutoBets, setNumOfAutoBets] = useState(0);
-  const [ballXTravel, setBallXTravel] = useState(0);
+  // const [ballXTravel, setBallXTravel] = useState(0);
   // Pyramid Code
 
   let rowCount = 1;
 
-  // STYLES
-  const mainNode = new Node(0);
-  const list = new LinkedList(mainNode);
-
-  let tempOldNodeArr = [mainNode];
-  let tempNewNodeArr = [];
-  let nodeArr = [];
-
   // multipliers
   const sixteenRowMultipliers = [
-    [16, 9, 2, 1.4, 1.4, 1.2, 1.1, 1, 0.5, 1, 1.1, 1.2, 1.4, 1.4, 2, 9, 16],
-    [110, 41, 10, 5, 3, 1.5, 1, 0.5, 0.3, 0.5, 1, 1.5, 3, 5, 10, 41, 110],
-    [1000, 130, 26, 9, 4, 2, 0.2, 0.2, 0.2, 0.2, 0.2, 2, 4, 9, 26, 130, 1000],
+    [16, 9, 2, 1.4, 1.4, 1.2, 1, 0.5, 0.5, 0.5, 1, 1.2, 1.4, 1.4, 2, 9, 16],
+    [110, 41, 10, 5, 3, 1.2, 0.5, 0.3, 0.3, 0.3, 0.5, 1.2, 3, 5, 10, 41, 110],
+    [
+      1000, 130, 26, 8, 1, 0.8, 0.2, 0.2, 0.2, 0.2, 0.2, 0.8, 1, 8, 26, 130,
+      1000,
+    ],
   ];
 
   const fifteenRowMultipliers = [
-    [15, 8, 3, 2, 1.5, 1.1, 1, 0.7, 0.7, 1, 1.1, 1.5, 2, 3, 8, 15],
-    [88, 18, 11, 5, 3, 1.3, 0.5, 0.3, 0.3, 0.5, 1.3, 3, 5, 11, 18, 88],
-    [620, 83, 27, 8, 3, 0.5, 0.2, 0.2, 0.2, 0.2, 0.5, 3, 8, 27, 83, 620],
+    [15, 8, 3, 2, 1.2, 1, 0.7, 0.5, 0.5, 0.7, 1, 1.2, 2, 3, 8, 15],
+    [88, 18, 11, 5, 2, 0.8, 0.5, 0.3, 0.3, 0.5, 0.8, 2, 5, 11, 18, 88],
+    [620, 83, 4, 1.8, 1.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 1.2, 1.8, 4, 83, 620],
   ];
 
   const fourteenRowMultipliers = [
-    [7.1, 4, 1.9, 1.4, 1.3, 1.1, 1, 0.5, 1, 1.1, 1.3, 1.4, 1.9, 4, 7.1],
-    [58, 15, 7, 4, 1.9, 1, 0.5, 0.2, 0.5, 1, 1.9, 4, 7, 15, 58],
-    [420, 56, 18, 5, 1.9, 0.3, 0.2, 0.2, 0.2, 0.3, 1.9, 5, 18, 56, 420],
+    [6, 4, 1.9, 1.4, 1.2, 1, 0.5, 0.5, 0.5, 1, 1.2, 1.4, 1.9, 4, 6],
+    [58, 15, 7, 4, 1.4, 0.5, 0.2, 0.2, 0.2, 0.5, 1.4, 4, 7, 15, 58],
+    [420, 56, 3, 1.2, 1, 0.2, 0.2, 0.2, 0.2, 0.2, 1, 1.2, 3, 56, 420],
   ];
 
   const thirteenRowMultipliers = [
@@ -66,8 +63,8 @@ const App = () => {
   ];
 
   const twelveRowMultipliers = [
-    [10, 3, 1.6, 1.4, 1.1, 1, 0.5, 1, 1.1, 1.4, 1.6, 3, 10],
-    [33, 11, 4, 2, 1.1, 0.6, 0.3, 0.6, 1.1, 2, 4, 11, 33],
+    [10, 3, 1.6, 1, 0.8, 0.5, 0.5, 0.5, 0.8, 1.4, 1.6, 3, 10],
+    [33, 4, 2, 0.8, 0.5, 0.3, 0.3, 0.3, 0.5, 0.8, 2, 4, 33],
     [170, 24, 8.1, 2, 0.7, 0.2, 0.2, 0.2, 0.7, 2, 8.1, 24, 170],
   ];
 
@@ -131,6 +128,13 @@ const App = () => {
     }
   }, [rows]);
 
+  const mainNode = new Node(0);
+  const list = new LinkedList(mainNode);
+
+  let tempOldNodeArr = [mainNode];
+  let tempNewNodeArr = [];
+  let nodeArr = [];
+
   let ctr = 1;
 
   for (let i = 0; i < rows + 2; i++) {
@@ -185,31 +189,55 @@ const App = () => {
 
   // betting function
   const randomTraverse = () => {
-    let multiplier = 0;
-    if (betAmount > balance) {
-      // add popup here
-      console.log("cannot be");
-      return;
-    }
-    // console.log("CAN BE");
-    const headDup = list.head;
-    while (list.head) {
-      // console.log(list.head.data);
-      multiplier = list.head.data;
-      Math.random() > 0.5
-        ? (list.head = list.head.nextLeft)
-        : (list.head = list.head.nextRight);
-    }
+    if (!betStarted) {
+      let multiplier = 0;
+      if (betAmount > balance) {
+        // add popup here
+        console.log("cannot be");
+        return;
+      }
+      // console.log("CAN BE");
+      const headDup = list.head;
 
-    console.log(multiplier);
-    console.log(balance);
-    setBalance(balance - betAmount + betAmount * multiplier);
+      let path = [];
 
-    list.head = headDup;
+      while (list.head) {
+        // console.log(list.head.data);
+        // console.log("test");
+        multiplier = list.head.data;
+        if (Math.random() > 0.5) {
+          list.head = list.head.nextLeft;
+          path.push(-1);
+        } else {
+          list.head = list.head.nextRight;
+          path.push(1);
+        }
+      }
+      // console.log(multiplier);
+      // console.log(balance);
+      path.pop();
+      setBetPath(path);
+
+      setBetStarted(true);
+
+      setTimeout(() => {
+        setBalance(balance - betAmount + betAmount * multiplier);
+        setBetStarted(false);
+      }, 1200);
+
+      list.head = headDup;
+
+      console.log("multiplier", multiplier);
+    }
   };
 
-  const automatedTraverse = () => {
+  const delay = (ms) => {
+    return new Promise((resolve, reject) => setTimeout(resolve, ms));
+  };
+
+  const automatedTraverse = async () => {
     for (let i = 0; i < numOfAutoBets; i++) {
+      await delay(1500);
       randomTraverse();
     }
   };
@@ -248,8 +276,10 @@ const App = () => {
   //   left: "49%",
   // };
 
+  // console.log("betPath", betPath);
+
   return (
-    <div className="app">
+    <div className='app'>
       <div>
         {/* <Ball rows={rows} /> */}
         <Balance handleBalance={handleBalance} balance={balance} />
@@ -265,9 +295,16 @@ const App = () => {
           betAmount={betAmount}
           randomTraverse={randomTraverse}
           automatedTraverse={automatedTraverse}
+          betStarted={betStarted}
         />
       </div>
-      <Pyramid rows={rows} nodeArr={nodeArr} tempOldNodeArr={tempOldNodeArr} />
+      <Pyramid
+        path={betPath}
+        rows={rows}
+        nodeArr={nodeArr}
+        tempOldNodeArr={tempOldNodeArr}
+        betStarted={betStarted}
+      />
     </div>
   );
 };
