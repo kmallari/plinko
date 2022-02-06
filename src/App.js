@@ -27,8 +27,7 @@ const App = () => {
   const [rows, setRows] = useState(8);
   const [betPath, setBetPath] = useState([]);
   const [betStarted, setBetStarted] = useState(false);
-
-  const [numOfAutoBets, setNumOfAutoBets] = useState(0);
+  const [numOfAutoBets, setNumOfAutoBets] = useState(10);
   // const [ballXTravel, setBallXTravel] = useState(0);
   // Pyramid Code
 
@@ -177,8 +176,9 @@ const App = () => {
   };
 
   // betting function
-  const randomTraverse = (isAutomatic = true) => {
+  const randomTraverse = async () => {
     if (!betStarted) {
+      setBetStarted(true);
       let multiplier = 0;
       if (betAmount > balance) {
         // add popup here
@@ -203,21 +203,23 @@ const App = () => {
         }
       }
       // console.log(multiplier);
-      // console.log(balance);
       path.pop();
       setBetPath(path);
 
-      console.log("isAutomatic", isAutomatic);
+      console.log("bal", balance);
 
-      if (isAutomatic === false) {
-        setBetStarted(true);
-        setTimeout(() => {
-          setBalance(balance - betAmount + betAmount * multiplier);
-          setBetStarted(false);
-        }, 1200);
-      } else {
-        return multiplier;
-      }
+      await delay(1200);
+      await setBalance(
+        (balance) => balance - betAmount + betAmount * multiplier
+      );
+      await setBetStarted(false);
+
+      // setTimeout(() => {
+      //   setBalance(tempBal);
+      //   setBetStarted(false);
+      // }, 1200);
+
+      // return multiplier;
 
       list.head = headDup;
 
@@ -229,11 +231,16 @@ const App = () => {
     return new Promise((resolve, reject) => setTimeout(resolve, ms));
   };
 
-  const automatedTraverse = async () => {
+  const automatedTraverse = async (num = numOfAutoBets) => {
+    // for (let i = 0; i < numOfAutoBets; i++) {
+    //   randomTraverse();
+    //   await delay(1200);
+    // }
+
     setBetStarted(true);
     for (let i = 0; i < numOfAutoBets; i++) {
-      randomTraverse(false);
-      // await delay(1200);
+      randomTraverse();
+      await delay(1200);
     }
     setBetStarted(false);
   };
@@ -269,7 +276,11 @@ const App = () => {
     <div className='app'>
       <div>
         {/* <Ball rows={rows} /> */}
-        <Balance handleBalance={handleBalance} balance={balance} />
+        <Balance
+          handleBalance={handleBalance}
+          balance={balance}
+          betStarted={betStarted}
+        />
         <Menu
           handleAutoBet={handleAutoBet}
           handleBetAmount={handleBetAmount}
