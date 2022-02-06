@@ -1,6 +1,6 @@
 import React from "react";
 
-const Auto = ({ handleNumOfAutoBets, automatedTraverse }) => {
+const Auto = ({ handleNumOfAutoBets, automatedTraverse, numOfAutoBets }) => {
   return (
     <div className="auto-menu">
       <div className="input">

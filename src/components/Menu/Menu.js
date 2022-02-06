@@ -14,8 +14,9 @@ const Menu = ({
   autoBet,
   betAmount,
   randomTraverse,
-  automatedTraverse,
+  automatedTraverse,  
   betStarted,
+  numOfAutoBets
 }) => {
   return (
     <div className='menu'>
@@ -26,6 +27,7 @@ const Menu = ({
             !autoBet ? `unselected-tab` : `selected-tab`
           } manual-button`}
           id='manual'
+          disabled={betStarted ? true : null}
         >
           Manual
         </button>
@@ -35,6 +37,7 @@ const Menu = ({
             autoBet ? `unselected-tab` : `selected-tab`
           } auto-button`}
           id='auto'
+          disabled={betStarted ? true : null}
         >
           Auto
         </button>
@@ -49,11 +52,20 @@ const Menu = ({
             name='bet-amount'
             min='0'
             value={betAmount}
+            disabled={betStarted ? true : null}
           />
-          <button onClick={halfBet} className='bet-modifier half'>
+          <button
+            onClick={halfBet}
+            className='bet-modifier half'
+            disabled={betStarted ? true : null}
+          >
             ½
           </button>
-          <button onClick={doubleBet} className='bet-modifier double'>
+          <button
+            onClick={doubleBet}
+            className='bet-modifier double'
+            disabled={betStarted ? true : null}
+          >
             2×
           </button>
         </div>

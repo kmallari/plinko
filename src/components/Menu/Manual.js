@@ -4,7 +4,7 @@ const Manual = ({ randomTraverse }) => {
   // randomTraverse();
   return (
     <div>
-      <button onClick={randomTraverse} className="bet-button">Bet</button>
+      <button onClick={()=>randomTraverse(false)} className="bet-button">Bet</button>
     </div>
   )
 }

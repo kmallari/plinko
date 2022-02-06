@@ -13,7 +13,7 @@ const Ball = ({ rows, path = [], betStarted }) => {
 
   switch (rows) {
     case 8:
-      xDistance = 22;
+      xDistance = 21;
       yDistance = 336 / rows;
       break;
     case 9:
@@ -118,9 +118,9 @@ const Ball = ({ rows, path = [], betStarted }) => {
     },
   };
 
-  console.log("path", path);
-  console.log("ypath", yPath);
-  console.log("xpath", xPath);
+  // console.log("path", path);
+  // console.log("ypath", yPath);
+  // console.log("xpath", xPath);
 
   return (
     <motion.div

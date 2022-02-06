@@ -188,7 +188,7 @@ const App = () => {
   };
 
   // betting function
-  const randomTraverse = () => {
+  const randomTraverse = (isAutomatic = true) => {
     if (!betStarted) {
       let multiplier = 0;
       if (betAmount > balance) {
@@ -218,16 +218,21 @@ const App = () => {
       path.pop();
       setBetPath(path);
 
-      setBetStarted(true);
+      console.log("isAutomatic", isAutomatic);
 
-      setTimeout(() => {
-        setBalance(balance - betAmount + betAmount * multiplier);
-        setBetStarted(false);
-      }, 1200);
+      if (isAutomatic === false) {
+        setBetStarted(true);
+        setTimeout(() => {
+          setBalance(balance - betAmount + betAmount * multiplier);
+          setBetStarted(false);
+        }, 1200);
+      } else {
+        return multiplier;
+      }
 
       list.head = headDup;
 
-      console.log("multiplier", multiplier);
+      // console.log("multiplier", multiplier);
     }
   };
 
@@ -236,10 +241,12 @@ const App = () => {
   };
 
   const automatedTraverse = async () => {
+    setBetStarted(true);
     for (let i = 0; i < numOfAutoBets; i++) {
-      await delay(1500);
-      randomTraverse();
+      randomTraverse(false);
+      await delay(1200);
     }
+    setBetStarted(false);
   };
 
   const handleRows = (e) => {
@@ -266,17 +273,8 @@ const App = () => {
     setBetAmount(betAmount * 2);
   };
 
-  // const ballStyle = {
-  //   background: "red",
-  //   borderRadius: "50%",
-  //   width: `${10 / rows}em`,
-  //   height: `${10 / rows}em`,
-  //   position: "absolute",
-  //   top: "60px",
-  //   left: "49%",
-  // };
-
   // console.log("betPath", betPath);
+  // console.log(list);
 
   return (
     <div className='app'>
