@@ -1,9 +1,9 @@
 import Pyramid from "./components/Pyramid/Pyramid";
 import Menu from "./components/Menu/Menu";
-import Ball from "./components/Ball/Ball";
 import { useState, useEffect } from "react";
 import "./App.css";
 import Balance from "./components/Balance/Balance";
+import Error from "./components/Error/Error";
 
 class Node {
   constructor(data) {
@@ -28,6 +28,7 @@ const App = () => {
   const [betPath, setBetPath] = useState([]);
   const [betStarted, setBetStarted] = useState(false);
   const [numOfAutoBets, setNumOfAutoBets] = useState(10);
+  const [error, setError] = useState(false);
   // const [ballXTravel, setBallXTravel] = useState(0);
   // Pyramid Code
 
@@ -178,18 +179,20 @@ const App = () => {
   // betting function
   const randomTraverse = async () => {
     if (!betStarted) {
-      setBetStarted(true);
       let multiplier = 0;
       if (betAmount > balance) {
         // add popup here
         console.log("cannot be");
+        setError(true);
+        await delay(2000);
+        setError(false);
         return;
       }
       // console.log("CAN BE");
       const headDup = list.head;
 
       let path = [];
-
+      setBetStarted(true);
       while (list.head) {
         // console.log(list.head.data);
         // console.log("test");
@@ -206,7 +209,7 @@ const App = () => {
       path.pop();
       setBetPath(path);
 
-      console.log("bal", balance);
+      // console.log("bal", balance);
 
       await delay(1200);
       await setBalance(
@@ -231,16 +234,24 @@ const App = () => {
     return new Promise((resolve, reject) => setTimeout(resolve, ms));
   };
 
-  const automatedTraverse = async (num = numOfAutoBets) => {
+  const automatedTraverse = async () => {
     // for (let i = 0; i < numOfAutoBets; i++) {
     //   randomTraverse();
     //   await delay(1200);
     // }
-
+    if (betAmount * numOfAutoBets > balance) {
+      // add popup here
+      console.log("cannot be");
+      setError(true);
+      await delay(2000);
+      setError(false);
+      setBetStarted(false);
+      return;
+    }
     setBetStarted(true);
     for (let i = 0; i < numOfAutoBets; i++) {
-      randomTraverse();
-      await delay(1200);
+        randomTraverse();
+        await delay(1200);
     }
     setBetStarted(false);
   };
@@ -271,11 +282,20 @@ const App = () => {
 
   // console.log("betPath", betPath);
   // console.log(list);
+  // console.log(error);
+
+  const variants = {
+    start: {
+      opacity: 1,
+    },
+    end: {
+      opacity: 0,
+    },
+  };
 
   return (
     <div className='app'>
       <div>
-        {/* <Ball rows={rows} /> */}
         <Balance
           handleBalance={handleBalance}
           balance={balance}
@@ -303,6 +323,14 @@ const App = () => {
         tempOldNodeArr={tempOldNodeArr}
         betStarted={betStarted}
       />
+      <div className='error-module'>
+        <Error error={error} />
+      </div>
+      {/* {error ? (
+        <div className='error-module'>
+        <Error error={error} />
+      </div>
+      ) : null} */}
     </div>
   );
 };

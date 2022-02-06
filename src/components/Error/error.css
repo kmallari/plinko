@@ -1,0 +1,12 @@
+.error {
+  position: absolute;
+  width: 360px;
+  height: 44px;
+  padding: 30px;
+  border-radius: 14px;
+  background-color: rgb(236, 105, 54);
+}
+
+p {
+  margin: 0;
+}

@@ -77,3 +77,11 @@ select:focus {
 label {
   font-weight: 500;
 }
+
+.error-module {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+}
