@@ -1,7 +1,6 @@
 import React from "react";
 
 const Manual = ({ randomTraverse, betStarted }) => {
-  // randomTraverse();
   return (
     <div>
       <button

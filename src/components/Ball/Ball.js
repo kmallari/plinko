@@ -2,12 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const Ball = ({ rows, path = [], betStarted }) => {
-  // path = [1, 1, -1, 1, -1, 1, 1, -1, -1, 1]; // LANDS AT RIGHT 0.7
-  // path = [1, -1, 1, -1, 1, 1, 1, -1, -1, -1, -1, 1, 1, 1, 1, 1, -1, 1]; // LANDS AT RIGHT 0.5
-  // path = [1, 1, -1, 1, -1, 1, 1, -1, -1, 1]; // LANDS AT RIGHT 0.7
-  // path = [-1, -1, 1, -1, -1, 1, 1, 1, -1, -1] // LEFT 0.7
-  // path = [-1, -1, 1, 1, -1, 1, -1, 1, 1, -1]; // 0.4
-
   let xDistance = 0;
   let yDistance = 0;
 
@@ -118,10 +112,6 @@ const Ball = ({ rows, path = [], betStarted }) => {
     },
   };
 
-  // console.log("path", path);
-  // console.log("ypath", yPath);
-  // console.log("xpath", xPath);
-
   return (
     <motion.div
       variants={variants}
@@ -129,7 +119,6 @@ const Ball = ({ rows, path = [], betStarted }) => {
       transition={{
         duration: 1.2,
         ease: "easeIn",
-        // loop: Infinity,
         repeatDelay: 0,
       }}
     />

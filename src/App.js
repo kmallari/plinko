@@ -29,7 +29,6 @@ const App = () => {
   const [betStarted, setBetStarted] = useState(false);
   const [numOfAutoBets, setNumOfAutoBets] = useState(10);
   const [error, setError] = useState(false);
-  // const [ballXTravel, setBallXTravel] = useState(0);
   // Pyramid Code
 
   let rowCount = 1;
@@ -148,10 +147,6 @@ const App = () => {
   tempOldNodeArr.shift();
   tempOldNodeArr.pop();
 
-  // -------
-
-  // console.log(tempOldNodeArr)
-
   const handleBetAmount = (e) => {
     setBetAmount(parseFloat(e.target.value));
   };
@@ -188,14 +183,10 @@ const App = () => {
         setError(false);
         return;
       }
-      // console.log("CAN BE");
       const headDup = list.head;
-
       let path = [];
       setBetStarted(true);
       while (list.head) {
-        // console.log(list.head.data);
-        // console.log("test");
         multiplier = list.head.data;
         if (Math.random() > 0.5) {
           list.head = list.head.nextLeft;
@@ -205,28 +196,17 @@ const App = () => {
           path.push(1);
         }
       }
-      // console.log(multiplier);
+
       path.pop();
       setBetPath(path);
-
-      // console.log("bal", balance);
 
       await delay(1200);
       await setBalance(
         (balance) => balance - betAmount + betAmount * multiplier
       );
       await setBetStarted(false);
-
-      // setTimeout(() => {
-      //   setBalance(tempBal);
-      //   setBetStarted(false);
-      // }, 1200);
-
-      // return multiplier;
-
       list.head = headDup;
 
-      // console.log("multiplier", multiplier);
     }
   };
 
@@ -235,10 +215,6 @@ const App = () => {
   };
 
   const automatedTraverse = async () => {
-    // for (let i = 0; i < numOfAutoBets; i++) {
-    //   randomTraverse();
-    //   await delay(1200);
-    // }
     if (betAmount * numOfAutoBets > balance) {
       // add popup here
       console.log("cannot be");
@@ -279,10 +255,6 @@ const App = () => {
   const doubleBet = () => {
     setBetAmount(betAmount * 2);
   };
-
-  // console.log("betPath", betPath);
-  // console.log(list);
-  // console.log(error);
 
   const variants = {
     start: {
@@ -326,11 +298,6 @@ const App = () => {
       <div className='error-module'>
         <Error error={error} />
       </div>
-      {/* {error ? (
-        <div className='error-module'>
-        <Error error={error} />
-      </div>
-      ) : null} */}
     </div>
   );
 };
