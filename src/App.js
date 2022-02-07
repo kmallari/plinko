@@ -256,15 +256,6 @@ const App = () => {
     setBetAmount(betAmount * 2);
   };
 
-  const variants = {
-    start: {
-      opacity: 1,
-    },
-    end: {
-      opacity: 0,
-    },
-  };
-
   return (
     <div className='app'>
       <div>
