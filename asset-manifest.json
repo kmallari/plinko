@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/plinko/static/css/main.4dfcbce4.chunk.css",
+    "main.css": "/plinko/static/css/main.be8c9da6.chunk.css",
     "main.js": "/plinko/static/js/main.919e653a.chunk.js",
     "main.js.map": "/plinko/static/js/main.919e653a.chunk.js.map",
     "runtime-main.js": "/plinko/static/js/runtime-main.2cb06ddd.js",
@@ -10,13 +10,13 @@
     "static/js/3.eb28bec3.chunk.js": "/plinko/static/js/3.eb28bec3.chunk.js",
     "static/js/3.eb28bec3.chunk.js.map": "/plinko/static/js/3.eb28bec3.chunk.js.map",
     "index.html": "/plinko/index.html",
-    "static/css/main.4dfcbce4.chunk.css.map": "/plinko/static/css/main.4dfcbce4.chunk.css.map",
+    "static/css/main.be8c9da6.chunk.css.map": "/plinko/static/css/main.be8c9da6.chunk.css.map",
     "static/js/2.d5fe999b.chunk.js.LICENSE.txt": "/plinko/static/js/2.d5fe999b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2cb06ddd.js",
     "static/js/2.d5fe999b.chunk.js",
-    "static/css/main.4dfcbce4.chunk.css",
+    "static/css/main.be8c9da6.chunk.css",
     "static/js/main.919e653a.chunk.js"
   ]
 }
