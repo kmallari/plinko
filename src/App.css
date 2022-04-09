@@ -22,6 +22,7 @@ html {
 }
 
 body {
+  zoom: 0.8;
   height: 100%;
   width: 100%;
   background-color: rgb(25, 44, 56);
@@ -84,4 +85,18 @@ label {
   justify-content: center;
   position: absolute;
   top: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  body {
+    zoom: 1;
+  }
+  .app {
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+  }
 }
